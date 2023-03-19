@@ -1,8 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap");
+
 .square {
   width: 5rem;
   height: 5rem;
   border: 1px solid black;
   background-color: white;
-  font-size: 4rem;
-  color: palevioletred;
+  font-size: 2rem;
+  font-weight: 900;
+  color: rgb(1, 1, 184);
+  font-family: "Rock Salt", cursive;
 }
