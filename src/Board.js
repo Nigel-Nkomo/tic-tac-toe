@@ -2,23 +2,19 @@ import { useState } from "react";
 import Square from "./Square";
 import "./Board.css";
 
-export default function Board() {
-  const [isNext, setIsNext] = useState(true);
-  const [squares, setSquares] = useState(Array(9).fill(null));
-
+export default function Board({ xIsNext, squares, onPlay }) {
   const handleClick = (i) => {
     const squaresCopy = squares.slice();
-    if (squaresCopy[i] || calculateWinner(squares)) {
+    if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    if (isNext) {
+    if (xIsNext) {
       squaresCopy[i] = "X";
     } else {
       squaresCopy[i] = "O";
     }
 
-    setSquares(squaresCopy);
-    setIsNext(!isNext);
+    onPlay(squaresCopy);
   };
 
   const winner = calculateWinner(squares);
@@ -27,7 +23,7 @@ export default function Board() {
   if (winner) {
     status = "Winner: " + winner;
   } else {
-    status = "Next player: " + (isNext ? "X" : "O");
+    status = "Next player: " + (xIsNext ? "X" : "O");
   }
 
   return (
